@@ -18,6 +18,8 @@ env:
     - MOODLE_BRANCH=MOODLE_31_STABLE
 
 install:
+  - ps aux
+
   # Several tools complain about xdebug slowdown.
   - phpenv config-rm xdebug.ini
 
@@ -31,3 +33,11 @@ install:
 
   # Finally, the standard install step.
   - moodle-plugin-ci install
+
+script:
+  - ps aux
+
+after_script:
+  - ps aux
+  - killall -9 java
+  - ps aux
